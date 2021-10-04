@@ -1,0 +1,39 @@
+package Facebook_dropdown;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Facebook{
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\browser drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+//		driver.manage().window().maximize();
+		driver.get("http://www.fb.com");
+		driver.findElement(By.partialLinkText("English")).click();
+	WebElement createlink = driver.findElement(By.linkText("Create New Account"));	
+		createlink.click();
+		Thread.sleep(2000);
+	driver.findElement(By.name("firstname")).sendKeys("qwerty");	
+	driver.findElement(By.name("lastname")).sendKeys("asdfgh");	
+	driver.findElement(By.name("reg_email__")).sendKeys("abc@gmail.com");
+	driver.findElement(By.name("reg_email_confirmation__")).sendKeys("abc@gmail.com");
+	driver.findElement(By.id("password_step_input")).sendKeys("123456");
+
+WebElement dayDrop = driver.findElement(By.id("day"));
+	Select day = new Select(dayDrop);
+	day.selectByIndex(7);
+WebElement monthDrop = driver.findElement(By.id("month"));	
+	Select month = new Select(monthDrop);
+	month.selectByValue("10");
+WebElement yearDrop = driver.findElement(By.id("year"));
+	Select year = new Select(yearDrop);
+	year.selectByVisibleText("1987");
+	
+driver.findElement(By.xpath("//*[@name='sex' and @value='2']")).click();
+Thread.sleep(2000);
+driver.findElement(By.name("websubmit")).click();
+	}
+}
